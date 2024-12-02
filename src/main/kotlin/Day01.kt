@@ -8,12 +8,12 @@ fun main() {
     println(partTwo(input))
 }
 
-private fun partOne(input: Pair<MutableList<Int>, MutableList<Int>>) =
+private fun partOne(input: Pair<List<Int>, List<Int>>) =
     input.first.sorted().zip(input.second.sorted()).sumOf { (elementFormFirst, elementFromSecond) ->
         abs(elementFormFirst - elementFromSecond)
     }
 
-private fun partTwo(input: Pair<MutableList<Int>, MutableList<Int>>) =
+private fun partTwo(input: Pair<List<Int>, List<Int>>) =
     input.first.sumOf { elementFormFirst -> elementFormFirst * input.second.count { elementFormFirst == it } }
 
 
@@ -22,6 +22,3 @@ private fun readInput() =
         .map { it.split("   ") }
         .map { it[0].toInt() to it[1].toInt() }
         .unzip()
-        .let { (first, second) ->
-            first.toMutableList() to second.toMutableList()
-        }
