@@ -40,21 +40,21 @@ private fun partTwo(): Int {
     for (y in 0 until sizeOfColumns) {
         for (x in 0 until sizeOfRows) {
 
-            val temGrid = grid.map { it.copyOf() }.toTypedArray()
+            val tempGrid = grid.map { it.copyOf() }.toTypedArray()
             val mapOfVisitedObstructionWithDirection = mutableMapOf<Pair<Int, Int>, Pair<Int, Int>>()
             if (grid[y][x] != VISITED || Pair(y, x) == startingPoint) continue
 
-            temGrid[y][x] = OBSTRUCTION
+            tempGrid[y][x] = OBSTRUCTION
             var direction = Pair(-1, 0)
             var currentLocation = startingPoint
 
             while (true) {
                 val nextStep = currentLocation + direction
-                temGrid[currentLocation.first][currentLocation.second] = VISITED
+                tempGrid[currentLocation.first][currentLocation.second] = VISITED
 
                 if (!isInsideOfArray(nextStep)) break
 
-                when (temGrid[nextStep.first][nextStep.second]) {
+                when (tempGrid[nextStep.first][nextStep.second]) {
                     OBSTRUCTION -> {
                         if (mapOfVisitedObstructionWithDirection[nextStep] == direction) {
                             result++
